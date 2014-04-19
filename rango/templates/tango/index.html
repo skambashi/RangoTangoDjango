@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+{% load static %} <!-- Informs template system that we will be using static media -->
+
+<html>
+	<head>
+		<title>Tango</title>
+	</head>
+	
+	<body>
+		<h1>Tango says...</h1>
+		HELLO WORLD!! <strong>{{ boldmessage }}</strong>
+		<a href = "/tango/about/">About</a><br />
+		<img src = "{% static 'Rango.jpg' %}" alt = "PICTURE OF RANGOTANGODJJJJJANGO!" />
+	</body>
+
+</html>
