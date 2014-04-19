@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>Abouts...</title>
+    </head>
+    
+    <body>
+        <h1>ABOUT!</h1>
+        <a href ="/tango/">Home</a>
+        {% for word in messagio %}
+        <p>{{ word }}</p>
+        {% endfor %}
+        <img src = "{% static 'Seikun.png' %}" />
+    </body>
+
+</html>

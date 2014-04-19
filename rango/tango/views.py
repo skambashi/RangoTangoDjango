@@ -8,4 +8,6 @@ def index(request):
     return render(request, 'tango/index.html', context)
 
 def about(request):
-	return HttpResponse("Tango says: WELCOME TO THE ABOUTS. <a href='/tango/'>Index</a>")
+	context = {'messagio':['My', 'name', 'is', 'Seikun', 'Kambashi', '.']}
+	
+	return render(request, 'tango/about.html', context)
