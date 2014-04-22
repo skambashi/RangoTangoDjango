@@ -12,11 +12,20 @@
 		{% if categories %}
 			<ul>
 				{% for cat in categories %}
-				<li>{{ cat.name }}</li>
+				<li><a href = "/tango/category/{{ cat.url }}">{{ cat.name }}</a></li>
 				{% endfor %}
 			</ul>
 		{% else %}
 			<strong>There are no categories at the moment. Why don't YOU make some.</strong>
+		{% endif %}
+		{% if pages %}
+			<ul>
+				{% for page in pages %}
+				<li><a href = "{{ page.url }}">{{ page.title }}</a></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong>There are no pages at the moment. Why don't YOU make some.</strong>
 		{% endif %}
 		<a href = "/tango/about/">About</a>
 	</body>
