@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.template import RequestContext
+from tango.models import Category
 
 def index(request):
-    context = {'boldmessage': "I am bold font from the context"}
+	category_list = Category.objects.order_by('-likes')[:5]
+	context = {'categories': category_list}
 
-    return render(request, 'tango/index.html', context)
+	return render(request, 'tango/index.html', context)
 
 def about(request):
 	context = {'messagio':['My', 'name', 'is', 'Seikun', 'Kambashi', '.']}
-	
+
 	return render(request, 'tango/about.html', context)

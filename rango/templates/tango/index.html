@@ -8,10 +8,16 @@
 	</head>
 	
 	<body>
-		<h1>Tango says...</h1>
-		HELLO WORLD!! <strong>{{ boldmessage }}</strong>
-		<a href = "/tango/about/">About</a><br />
-		<img src = "{% static 'Rango.jpg' %}" alt = "PICTURE OF RANGOTANGODJJJJJANGO!" />
+		<h1>Tango says...HELLO WORLD!?</h1>
+		{% if categories %}
+			<ul>
+				{% for cat in categories %}
+				<li>{{ cat.name }}</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong>There are no categories at the moment. Why don't YOU make some.</strong>
+		{% endif %}
+		<a href = "/tango/about/">About</a>
 	</body>
-
 </html>
