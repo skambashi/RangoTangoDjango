@@ -26,7 +26,7 @@ def about(request):
 	
 def category(request, category_name_url):
 	category_name = decode(category_name_url)
-	context = {'category_name' : category_name}
+	context = {'category_name' : category_name, 'category_name_url' : category_name_url}
 	
 	try:
 		category = Category.objects.get(name = category_name)
@@ -51,18 +51,39 @@ def add_category(request):
 		
 		else:
 			print form.errors
+			form = CategoryForm()
 	
 	else:
 		form = CategoryForm()
 	
 	return render(request, 'tango/add_category.html', {'form':form})
 
+def add_page(request, category_name_url):
+	category_name = decode(category_name_url)
 
+	if request.method == 'POST':
+		form = PageForm(request.POST)
+		
+		if form.is_valid():
+			page = form.save(commit=False)
+			
+			try:
+				cat = Category.objects.get(name=category_name)
+				page.category = cat
+			except Category.DoesNotExist:
+				request.method = 'GET'
+				return render(request, 'tango/add_category.html', {})
+			
+			page.views = 0
+			page.save()
+			
+			return category(request, category_name_url)
+		
+		else:
+			print form.errors
 
-
-
-
-
-
-
-
+	else:
+		form = PageForm()
+	
+	return render(request, 'tango/add_page.html', {'category_name_url':category_name_url,
+		'category_name':category_name, 'form':form})
