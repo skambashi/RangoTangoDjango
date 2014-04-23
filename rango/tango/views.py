@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from tango.models import Category, Page
+from tango.forms import CategoryForm, PageForm
 
 def encode(str):
 	return str.replace(' ', '_')
@@ -38,3 +39,30 @@ def category(request, category_name_url):
 		pass
 	
 	return render(request, 'tango/category.html', context)
+
+def add_category(request):
+	if request.method == 'POST':
+		form = CategoryForm(request.POST)
+		
+		if form.is_valid():
+			form.save(commit=True)
+			
+			return index(request)
+		
+		else:
+			print form.errors
+	
+	else:
+		form = CategoryForm()
+	
+	return render(request, 'tango/add_category.html', {'form':form})
+
+
+
+
+
+
+
+
+
+
