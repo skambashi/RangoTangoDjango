@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tango</title>
+	</head>
+	
+	
+	<body>
+		<h1>{{ category_name }}</h1>
+		{% if category %}
+			{% if pages %}
+			<ul>
+				{% for page in pages %}
+				<li><a href = "{{ page.url }}">{{ page.title }}</a></li>
+				{% endfor %}
+			</ul>
+			{% else %}
+				<strong>No pages currently in this category. Let's add some.</strong>
+			{% endif %}
+			<a href="/tango/category/{{category_name_url}}/add_page/">Add a new Page!</add>
+		{% else %}
+			<strong>The specified category {{ category_name }} does not yet exist. Make it.</strong>
+		{% endif %}
+	</body>
+
+</html>
