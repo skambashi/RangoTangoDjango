@@ -145,7 +145,7 @@ def user_login(request):
 
 @login_required
 def restricted(request):
-	return HttpResponse("WELCOME, USER.")
+	return render(request, 'tango/restricted.html', {})
 
 @login_required
 def user_logout(request):
