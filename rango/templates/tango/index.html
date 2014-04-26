@@ -8,7 +8,11 @@
 	</head>
 	
 	<body>
-		<h1>Tango says...HELLO WORLD?!</h1>
+		{% if user.is_authenticated %}
+			<h1>Tango says...WELCOME {{ user.username }}?!</h1>
+		{% else %}
+			<h1>Tango says...HELLO WORLD?!</h1>
+		{% endif %}
 		{% if categories %}
 			<ul>
 				{% for cat in categories %}
@@ -27,8 +31,15 @@
 		{% else %}
 			<strong>There are no pages at the moment. Why don't YOU make some.</strong>
 		{% endif %}
-		<a href = "/tango/about/">About</a>
-		<a href = "/tango/add_category/">Add a new Category!</a>
-		<a href = "/tango/register/">Register here!</a>
+		
+		{% if user.is_authenticated %}
+			<a href = "/tango/add_category/">Add a new Category!</a><br />
+			<a href = "/tango/restricted/">Restricted Page</a><br />
+			<a href = "/tango/logout/">Logout</a><br />
+		{% else %}
+			<a href = "/tango/register/">Register here!</a><br />
+			<a href = "/tango/login/">Login!</a><br />
+		{% endif %}
+		<a href = "/tango/about/">About</a><br />
 	</body>
 </html>
