@@ -5,31 +5,31 @@
 {% block title %}Welcome!{% endblock %}
 
 {% block body_block %}
-
-	{% if user.is_authenticated %}
-		<h1>Tango says...WELCOME {{ user.username }}?!</h1>
-	{% else %}
-		<h1>Tango says...HELLO WORLD?!</h1>
-	{% endif %}
+	<div class="hero-unit">
+		{% if user.is_authenticated %}
+			<h1>Tango says...WELCOME {{ user.username }}?!</h1>
+		{% else %}
+			<h1>Tango says...HELLO WORLD?!</h1>
+		{% endif %}
 	
-	{% if categories %}
-		<ul>
-			{% for cat in categories %}
-				<li><a href = "/tango/category/{{ cat.url }}">{{ cat.name }}</a></li>
-			{% endfor %}
-		</ul>
-	{% else %}
-		<strong>There are no categories at the moment. Why don't YOU make some.</strong>
-	{% endif %}
+		{% if categories %}
+			<ul>
+				{% for cat in categories %}
+					<li><a href = "/tango/category/{{ cat.url }}">{{ cat.name }}</a></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong>There are no categories at the moment. Why don't YOU make some.</strong>
+		{% endif %}
 	
-	{% if pages %}
-		<ul>
-			{% for page in pages %}
-				<li><a href = "{{ page.url }}">{{ page.title }}</a></li>
-			{% endfor %}
-		</ul>
-	{% else %}
-		<strong>There are no pages at the moment. Why don't YOU make some.</strong>
-	{% endif %}
-
+		{% if pages %}
+			<ul>
+				{% for page in pages %}
+					<li><a href = "{{ page.url }}">{{ page.title }}</a></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong>There are no pages at the moment. Why don't YOU make some.</strong>
+		{% endif %}
+	</div>
 {% endblock %}

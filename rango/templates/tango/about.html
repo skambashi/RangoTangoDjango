@@ -5,13 +5,13 @@
 {% block title %}About{% endblock %}
 
 {% block body_block %}
+	<div class="hero-unit">
+		<h1>About!</h1>
 
-    <h1>About!</h1>
-
-    {% for word in messagio %}
-	    <p>{{ word }}</p>
-    {% endfor %}
-    
-    <img src = "{% static 'Seikun.png' %}" />
-
+		{% for word in messagio %}
+			<p>{{ word }}</p>
+		{% endfor %}
+		
+		<img src = "{% static 'Seikun.png' %}" />
+	</div>
 {% endblock %}

@@ -3,24 +3,24 @@
 {% block title %}Add Page!{% endblock %}
 
 {% block body_block %}
+	<div class="hero-unit">
+		<h1>Add a new Page!</h1>
 
-	<h1>Add a new Page!</h1>
-
-	{% if category_name_url %}
-		<form id="page_form" method="post" action="/tango/category/{{category_name_url}}/add_page/">
-			{% csrf_token %}
-			{% for hidden in form.hidden_fields %}
-				{{ hidden }}
-			{% endfor %}
-			{% for field in form.visible_fields %}
-				{{ field.errors }}
-				{{ field.help_text }}
-				{{ field }}
-			{% endfor %}
-			<input name="submit" type="submit" value="Create Page"></input>
-		</form>
-	{% else %}
-		<strong>The specified category doesn't exist!</strong>
-	{% endif %}
-
+		{% if category_name_url %}
+			<form id="page_form" method="post" action="/tango/category/{{category_name_url}}/add_page/">
+				{% csrf_token %}
+				{% for hidden in form.hidden_fields %}
+					{{ hidden }}
+				{% endfor %}
+				{% for field in form.visible_fields %}
+					{{ field.errors }}
+					{{ field.help_text }}
+					{{ field }}
+				{% endfor %}
+				<input name="submit" type="submit" value="Create Page"></input>
+			</form>
+		{% else %}
+			<strong>The specified category doesn't exist!</strong>
+		{% endif %}
+	</div>
 {% endblock %}

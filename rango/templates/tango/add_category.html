@@ -3,7 +3,7 @@
 {% block title %}Add Category!{% endblock %}
 
 {% block body_block %}
-
+	<div class="hero-unit">
 		<h1>Add a new Category!</h1>
 		<form id="category_form" method="post" action="/tango/add_category/">
 			{% csrf_token %}
@@ -17,5 +17,5 @@
 			{% endfor %}
 			<input type="submit" name="submit" value="Create Category"></input>
 		</form>
-
+	</div>
 {% endblock %}
