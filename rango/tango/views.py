@@ -12,8 +12,8 @@ def decode(str):
 	return str.replace('_', ' ')
 
 def index(request):
-	category_list = Category.objects.order_by('-likes')#[:5]
-	page_list = Page.objects.order_by('-views')#[:5]
+	category_list = Category.objects.order_by('-likes')[:5]
+	page_list = Page.objects.order_by('-views')[:5]
 	context = {'categories': category_list, 'pages' : page_list}
 	
 	for category in category_list:
@@ -136,16 +136,17 @@ def user_login(request):
 				login(request, user)
 				return HttpResponseRedirect('/tango/')
 			else:
-				return HttpResponse("Your Tango account is disabled...")
+				context = {'disabled_account':True}
+				return render(request, 'tango/login.html', context)
 		else:
-			print "Invalid login details: {0}, {1}".format(username, password)
-			return HttpResponse("Invalid login details, maybe next time ;)")
+			context = {'bad_details':True}
+			return render(request, 'tango/login.html', context)
 	else:
 		return render(request, 'tango/login.html', {})
 
 @login_required
 def restricted(request):
-	return HttpResponse("WELCOME, USER.")
+	return render(request, 'tango/restricted.html', {})
 
 @login_required
 def user_logout(request):

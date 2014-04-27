@@ -1,21 +1,25 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Tango</title>
-	</head>
-	<body>
+{% extends 'tango/base.html' %}
+
+{% block title %}Add Category!{% endblock %}
+
+{% block body_block %}
+	<div class="hero-unit">
 		<h1>Add a new Category!</h1>
-		<form id="category_form" method="post" action="/tango/add_category/">
-			{% csrf_token %}
-			{% for hidden in form.hidden_fields %}
-				{{ hidden }}
-			{% endfor %}
-			{% for field in form.visible_fields %}
-				{{ field.errors }}
-				{{ field.help_text }}
-				{{ field }}
-			{% endfor %}
-			<input type="submit" name="submit" value="Create Category"></input>
-		</form>
-	</body>
-</html>
+		<br />
+		<div class="container">
+			<form class="span6" id="category_form" method="post" action="/tango/add_category/">
+				{% csrf_token %}
+				{% for hidden in form.hidden_fields %}
+					{{ hidden }}
+				{% endfor %}
+				{% for field in form.visible_fields %}
+					{{ field.errors }}
+					{{ field.help_text }}<br />
+					{{ field }}
+				{% endfor %}
+				<br />
+				<button class="btn btn-success" type="submit" name="submit">Create Category!</input>
+			</form>
+		</div>
+	</div>
+{% endblock %}

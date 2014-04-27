@@ -1,19 +1,17 @@
-<!DOCTYPE html>
+{% extends 'tango/base.html' %}
 
 {% load static %}
 
-<html>
-    <head>
-        <title>Abouts...</title>
-    </head>
-    
-    <body>
-        <h1>ABOUT!</h1>
-        <a href ="/tango/">Home</a>
-        {% for word in messagio %}
-        <p>{{ word }}</p>
-        {% endfor %}
-        <img src = "{% static 'Seikun.png' %}" />
-    </body>
+{% block title %}About{% endblock %}
 
-</html>
+{% block body_block %}
+	<div class="hero-unit">
+		<h1>About!</h1>
+
+		{% for word in messagio %}
+			<p>{{ word }}</p>
+		{% endfor %}
+		
+		<img src="{% static 'Seikun.png' %}" />
+	</div>
+{% endblock %}

@@ -1,20 +1,28 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Tango</title>
-	</head>
-	
-	<body>
-		<h1>LOGIN</h1>
-		
-		<form id="login_form" method="post" action="/tango/login/">
-			{% csrf_token %}
-			Username: <input type="text" name="username" value="" size="50"/>
-			<br />
-			Password: <input type="password" name="password" value="" size="50"/>
-			<br />
-			
-			<input type="submit" name="submit" value="Login!"/>
-		</form>
-	</body>
-</html>
+{% extends 'tango/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body_block %}
+	<div class="hero-unit">
+		<h1>Login</h1>
+
+		<div class="container">
+			<form class="form-signin span4" id="login_form" method="post" action="/tango/login/">
+				<h2 class="form-signin-heading">Sign in. Do it.</h2>
+				{% csrf_token %}
+				
+				{% if bad_details %}
+					<p><strong>Incorrect username or password!</strong></p>
+				{% elif disabled_account %}
+					<p><strong>Your account is currently disabled. Stop being a troll.</strong></p>
+				{% endif %}
+				
+				Username: <input class="input-block-level" type="text" placeholder="Username" name="username" value="" size="50"/>
+				<br />
+				Password: <input class="input-block-level" type="password" placeholder="Password" name="password" value="" size="50"/>
+				<br />
+				<button class="btn btn-success" type="submit" name="submit">Login!</button>
+			</form>
+		</div>
+	</div>
+{% endblock %}
