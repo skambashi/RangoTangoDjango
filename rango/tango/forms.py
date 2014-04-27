@@ -23,13 +23,18 @@ class PageForm(forms.ModelForm):
 		fields = ('title', 'url', 'views')
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
+	username = forms.CharField(help_text="Username")
+	email = forms.CharField(help_text="E-mail")
+	password = forms.CharField(widget=forms.PasswordInput(), help_text="Password")
 
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password')
+	class Meta:
+		model = User
+		fields = ['username', 'email', 'password']
 
 class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ('website', 'picture')
+	website = forms.URLField(help_text="Website", required=False)
+	picture = forms.ImageField(help_text="Profile Picture", required=False)
+
+	class Meta:
+		model = UserProfile
+		fields = ['website', 'picture']

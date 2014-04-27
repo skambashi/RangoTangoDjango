@@ -4,19 +4,31 @@
 
 {% block body_block %}
 	<div class="hero-unit">
-		<h1>Register with Tango</h1>
-		{% if registered %}
-			Tango says: <strong>Thank you for registering!</strong>
-			<a href="/tango/">Return to da homes</a>
-		{% else %}
-			Tango says: <strong>Register here!</strong><br />
-			<form id="user_form" method="post" action="/tango/register/" enctype="multipart/form-data">
-				{% csrf_token %}
-				{{ user_form.as_p }}
-				{{ profile_form.as_p }}
+		<h1>Register with Tango!</h1>
+		<br />
+		
+		<div class="container">
+			{% if registered %}
+				<p>Thank you for registering!</p>
+				<p><a href="/tango/login/">Login</a> when you are ready to dance!</p>
+			{% else %}
+				<form class="form-signin span8" id="user_form" method="post" action="/tango/register/" enctype="multipart/form-data">
+					<h2 class="form-signin-heading">Signup Here!</h2>
+					{% csrf_token %}
+					{% for field in user_form.visible_fields %}
+						{{ field.errors }}
+						{{ field.help_text }}<br />
+						{{ field }}<br />
+					{% endfor %}
+					{% for field in profile_form.visible_fields %}
+						{{ field.errors }}
+						{{ field.help_text }}<br />
+						{{ field }}<br />
+					{% endfor %}
 			
-				<input type="submit" name="submit" value="Register!" />
-			</form>
-		{% endif %}
+					<button class="btn btn-success" type="submit" name="submit">Register!</button>
+				</form>
+			{% endif %}
+		</div>
 	</div>
 {% endblock %}

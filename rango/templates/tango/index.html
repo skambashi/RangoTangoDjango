@@ -7,29 +7,36 @@
 {% block body_block %}
 	<div class="hero-unit">
 		{% if user.is_authenticated %}
-			<h1>Tango says...WELCOME {{ user.username }}?!</h1>
+			<h1>READY TO TANGO {{ user.username }}?</h1>
 		{% else %}
-			<h1>Tango says...HELLO WORLD?!</h1>
+			<h1>WELCOME TO TANGO!</h1>
 		{% endif %}
-	
-		{% if categories %}
-			<ul>
-				{% for cat in categories %}
-					<li><a href = "/tango/category/{{ cat.url }}">{{ cat.name }}</a></li>
-				{% endfor %}
-			</ul>
-		{% else %}
-			<strong>There are no categories at the moment. Why don't YOU make some.</strong>
-		{% endif %}
-	
-		{% if pages %}
-			<ul>
-				{% for page in pages %}
-					<li><a href = "{{ page.url }}">{{ page.title }}</a></li>
-				{% endfor %}
-			</ul>
-		{% else %}
-			<strong>There are no pages at the moment. Why don't YOU make some.</strong>
-		{% endif %}
+		<p>Find, Add, Share and Tango useful links & resources!</p>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<h2>Top 5 Categories!</h2>
+			{% if categories %}
+				<ul>
+					{% for cat in categories %}
+						<li><a href = "/tango/category/{{ cat.url }}">{{ cat.name }}</a></li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<strong>There are no categories at the moment. MAKE SOME.</strong>
+			{% endif %}
+		</div>
+		<div class="span6">
+			<h2>Top 5 Pages!</h2>
+			{% if pages %}
+				<ul>
+					{% for page in pages %}
+						<li><a href = "{{ page.url }}">{{ page.title }}</a> - {{ page.category }} ({{ page.views }} view(s))</li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<strong>There are no pages at the moment. ADD SOME.</strong>
+			{% endif %}
+		</div>
 	</div>
 {% endblock %}
